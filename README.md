@@ -2,10 +2,10 @@
 
 
 ## Before run
-> In crud-servlet.xml change:
-- jdbcUrl
-- user
-- password
+> In file crud-servlet.xml change bean myDataSource:
+- jdbcUrl - url to your DB
+- user - username to your DB
+- password - password to your DB
 
 
 ## Features
