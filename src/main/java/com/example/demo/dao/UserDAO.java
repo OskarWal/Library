@@ -7,9 +7,9 @@ import java.util.List;
 
 
 public interface UserDAO {
-    public void saveUser(User user);
-    public User getUser(String username);
-    public List<Authority> getAuthoritity(String username);
+    void saveUser(User user);
+    User getUser(String username);
+    List<Authority> getAuthoritity(String username);
 
     List<User> getAllUsers();
 }

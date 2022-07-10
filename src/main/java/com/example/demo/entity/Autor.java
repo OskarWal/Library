@@ -38,13 +38,11 @@ public class Autor {
         if (ksiazki == null) {
             ksiazki = new HashSet<>();
         }
-        //ksiazka.addAutor(this);
         ksiazki.add(ksiazka);
     }
     public void removeKsiazka(Ksiazka ksiazka){
         if (ksiazki == null)
             return;
-        //autor.addKsiazka(this);
         ksiazki.remove(ksiazka);
     }
     public String getImie() {

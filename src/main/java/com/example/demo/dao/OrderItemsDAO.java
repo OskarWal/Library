@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface OrderItemsDAO
 {
-    public void saveOrderItems(OrderItems orderItems);
+    void saveOrderItems(OrderItems orderItems);
 
     List<OrderItems> getAllItemsOrder(Order order);
 }
