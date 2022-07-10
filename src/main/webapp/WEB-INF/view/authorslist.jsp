@@ -40,4 +40,3 @@
 </rapid:override>
 
 <%@ include file="base.jsp" %>
-test
