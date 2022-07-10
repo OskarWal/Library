@@ -1,6 +1,12 @@
 # Library
 
 
+## Before run
+> In crud-servlet.xml change:
+- jdbcUrl
+- user
+- password
+
 
 ## Features
 - Create User
