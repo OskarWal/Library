@@ -19,11 +19,8 @@ http://www.springframework.org/schema/security/spring-security-4.2.xsd"
 >
     <sec:global-method-security pre-post-annotations="enabled"/>
 
-    <!-- twoja paczka z beanmi -->
     <context:component-scan base-package="com.example" />
-    <!-- adnotacje -->
     <mvc:annotation-driven/>
-    <!-- MVC view resolver -->
     <bean id="bcrypt" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
     <mvc:view-controller path="/login"/>
     <mvc:view-controller path="/logout"/>
