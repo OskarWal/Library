@@ -5,7 +5,12 @@
 <rapid:override name="content">
     <div class="fs-1 pt-5 text-center">Rejestracja</div>
     <c:if test="${not empty validator}"><p><c:out value="${validator}"/></p></c:if>
-        <form:form method="post" modelAttribute="user">
+        <form:form method="post" modelAttribute="user" cssClass="form-row text-center" cssStyle="margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)">
             <div class="mb-3 mt-3">
                 <label for="username" class="form-label">Nazwa:</label>
                 <form:input cssClass="form-control" path="username" id="username" class="form-control"/>

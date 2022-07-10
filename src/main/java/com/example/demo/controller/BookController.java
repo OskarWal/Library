@@ -159,7 +159,7 @@ public class BookController {
         model.addAttribute("goodMessages",goodMessages);
         model.addAttribute("badMessages",badMessages);
 
-        return "redirect:/";
+        return "redirect:/editList";
     }
 
     @GetMapping("/details")

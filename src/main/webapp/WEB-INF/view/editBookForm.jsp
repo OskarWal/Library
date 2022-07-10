@@ -58,7 +58,7 @@
                 <label>Opis:</label>
                 <form:textarea path="opis" class="form-control"/>
             </div>
-            <button type="submit" class="btn btn-danger my-sm-3 w-50 mt-3">Dodaj</button>
+            <button type="submit" class="btn btn-danger my-sm-3 w-50 mt-3">Edytuj</button>
         </form:form>
     </div>
 

@@ -75,7 +75,7 @@ public class MainController
 
             for(Autor autor:book.getAutorzy())
             {
-                String bookAuthor = autor.getImie() + autor.getNazwisko();
+                String bookAuthor = autor.getImie() + " " + autor.getNazwisko();
                 if(bookAuthor.toLowerCase(Locale.ROOT).contains(search))
                 {
                     books.add(book);
