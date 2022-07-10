@@ -26,9 +26,6 @@ http://www.springframework.org/schema/security/spring-security-4.2.xsd"
     <mvc:view-controller path="/logout"/>
     <sec:http>
     <sec:intercept-url pattern="/" access="permitAll()"/>
-
-
-
     <sec:intercept-url pattern="/register" access="permitAll()"/>
     <sec:intercept-url pattern="/login" access="isAnonymous()"/>
     <sec:intercept-url pattern="/logout" access="isAuthenticated()"/>

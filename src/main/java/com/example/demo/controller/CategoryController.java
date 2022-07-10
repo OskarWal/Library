@@ -35,9 +35,21 @@ public class CategoryController {
     }
 
     @GetMapping("/formedit")
-    public String formedit(Model model, @RequestParam("categoryId") int categoryId)
+    public String formedit(Model model, @RequestParam("categoryId") int categoryId, @RequestParam(name = "goodMessages",required = false) List<String> goodMessages, @RequestParam(name = "badMessages",required = false) List<String> badMessages)
     {
         Kategoria category = categoryService.getCategory(categoryId);
+
+        if(category == null)
+        {
+            if(badMessages == null)
+                badMessages = new ArrayList<>();
+            badMessages.add("Błąd. Podana kategoria nie istnieje");
+            model.addAttribute("goodMessages",goodMessages);
+            model.addAttribute("badMessages",badMessages);
+            return "redirect:/categories/list";
+        }
+
+
         model.addAttribute("category",category);
         return "EditCategoryForm";
     }

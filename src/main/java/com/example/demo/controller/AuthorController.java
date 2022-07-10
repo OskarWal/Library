@@ -37,9 +37,24 @@ public class AuthorController
     }
 
     @GetMapping("/formedit")
-    public String formedit(Model model, @RequestParam("authorId") int authorId)
+    public String formedit(Model model, @RequestParam("authorId") int authorId, @RequestParam(name = "goodMessages",required = false) List<String> goodMessages, @RequestParam(name = "badMessages",required = false) List<String> badMessages)
     {
         Autor author = authorService.getAuthor(authorId);
+
+        if(author == null)
+        {
+            if(badMessages == null)
+            {
+                badMessages = new ArrayList<>();
+                badMessages.add("Błąd podczas edycji: Podano niepoprawne id autora");
+            }
+            model.addAttribute("goodMessages",goodMessages);
+            model.addAttribute("badMessages",badMessages);
+
+            return "redirect:/authors/list";
+        }
+
+
         model.addAttribute("author",author);
         return "editAuthorForm";
     }
@@ -59,7 +74,7 @@ public class AuthorController
             model.addAttribute("goodMessages",goodMessages);
             model.addAttribute("badMessages",badMessages);
 
-            return "redirect:/";
+            return "redirect:/authors/list";
         }
 
         old.setImie(autor.getImie());

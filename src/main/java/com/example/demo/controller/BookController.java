@@ -41,12 +41,28 @@ public class BookController {
     }
 
     @GetMapping("/edit")
-    public String editBook(Model model, @RequestParam("bookId") int bookId)
+    public String editBook(Model model, @RequestParam("bookId") int bookId, @RequestParam(name = "goodMessages",required = false) List<String> goodMessages, @RequestParam(name = "badMessages",required = false) List<String> badMessages)
     {
         Ksiazka book = bookService.getBookById(bookId);
+
+        if(book == null)
+        {
+            if(badMessages == null)
+                badMessages = new ArrayList<>();
+            badMessages.add("Błąd. Podana książka nie istnieje");
+            model.addAttribute("goodMessages",goodMessages);
+            model.addAttribute("badMessages",badMessages);
+            return "redirect:/editList";
+        }
+
+
         List<Kategoria> categories = categoryService.getCategories();
         List<Autor> authors = authorService.getAuthors();
-        Set<Autor> book_authors = book.getAutorzy();
+        List<Integer> book_authors = new ArrayList<>();
+        for(Autor b: book.getAutorzy())
+        {
+            book_authors.add(b.getId());
+        }
         model.addAttribute("book",book);
         model.addAttribute("categories", categories);
         model.addAttribute("authors", authors);

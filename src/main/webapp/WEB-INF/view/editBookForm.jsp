@@ -39,9 +39,14 @@
 
             <div class="mb-3">
                 <label>Autorzy:</label>
-                <select class="form-control" name="authors_id" multiple="true">
+                <select class="form-control" name="authors_id" multiple>
                     <c:forEach items="${authors}" var="author">
-                        <option value="${author.id}">${author.imie} ${author.nazwisko}</option>
+                        <c:if test="${book_authors.contains(author.id)}">
+                            <option selected value="${author.id}">${author.imie} ${author.nazwisko}</option>
+                        </c:if>
+                        <c:if test="${!book_authors.contains(author.id)}">
+                            <option value="${author.id}">${author.imie} ${author.nazwisko}</option>
+                        </c:if>
                     </c:forEach>
                 </select>
             </div>
