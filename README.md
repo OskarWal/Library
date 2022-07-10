@@ -7,6 +7,9 @@
 - user - username to your DB
 - password - password to your DB
 
+## After run
+> Create admin path:
+> /registerAdmin
 
 ## Features
 - Create User
