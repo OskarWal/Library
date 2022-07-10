@@ -13,7 +13,7 @@
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%)">
-            <div class="fs-1 pt-5 text-center">Edytuj książkę</div>
+            <div class="fs-1 pt-5 text-center">Edytuj istniejącą książkę</div>
            <input hidden name="bookId" id="bookId" value="${book.id}"/>
             <div class="mb-3 mt-5">
                 <label>Tytuł:</label>
@@ -51,7 +51,7 @@
             </div>
             <div class="mb-3">
                 <label>Opis:</label>
-                <form:input path="opis" class="form-control"/>
+                <form:textarea path="opis" class="form-control"/>
             </div>
             <button type="submit" class="btn btn-danger my-sm-3 w-50 mt-3">Dodaj</button>
         </form:form>

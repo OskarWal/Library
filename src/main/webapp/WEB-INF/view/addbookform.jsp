@@ -50,7 +50,7 @@
         </div>
         <div class="mb-3">
             <label>Opis:</label>
-            <form:input path="opis" class="form-control"/>
+            <form:textarea path="opis" class="form-control"/>
         </div>
         <button type="submit" class="btn btn-danger my-sm-3 w-50 mt-3">Dodaj</button>
     </form:form>
