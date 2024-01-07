@@ -35,7 +35,7 @@ public class UserDAOImpl implements UserDAO{
     }
 
     @Override
-    public List<Authority> getAuthoritity(String username) {
+    public List<Authority> getAuthority(String username) {
 
         Session currentSession = sessionFactory.getCurrentSession();
         User user =  (User) currentSession.get(User.class, username);

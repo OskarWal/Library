@@ -43,7 +43,7 @@ public class Order {
         return username;
     }
 
-    public void setUser(String user) {
+    public void setUsername(String username) {
         this.username = username;
     }
 }

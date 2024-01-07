@@ -1,14 +1,14 @@
 package com.example.demo.services;
 
-import com.example.demo.entity.Ksiazka;
+import com.example.demo.entity.Book;
 
 import java.util.List;
 
 public interface BookService {
-    void saveBook(Ksiazka ksiazka);
+    void saveBook(Book book);
 
-    List<Ksiazka> getBooks();
-    Ksiazka getBookById(int id);
+    List<Book> getBooks();
+    Book getBookById(int id);
 
-    void deleteBook(Ksiazka book);
+    void deleteBook(Book book);
 }

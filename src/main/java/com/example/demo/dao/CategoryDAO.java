@@ -1,15 +1,15 @@
 package com.example.demo.dao;
 
 
-import com.example.demo.entity.Kategoria;
+import com.example.demo.entity.Category;
 
 import java.util.List;
 
 public interface CategoryDAO {
-    List<Kategoria> getCategories();
-    void saveCategory(Kategoria kategoria);
+    List<Category> getCategories();
+    void saveCategory(Category category);
 
-    Kategoria getCategory(int categoryId);
+    Category getCategory(int categoryId);
 
-    void deleteCategory(Kategoria category);
+    void deleteCategory(Category category);
 }

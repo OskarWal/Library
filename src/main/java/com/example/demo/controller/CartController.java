@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.Cart;
-import com.example.demo.entity.Ksiazka;
+import com.example.demo.entity.Book;
 import com.example.demo.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -49,7 +49,7 @@ public class CartController
         List<Cart> cartItemsList = cartService.getCart(username);
         for(Cart item:cartItemsList)
         {
-            if(item.getKsiazki_id().getId() == bookId)
+            if(item.getBookId().getId() == bookId)
             {
                 cartService.deleteCartItem(item);
                 break;
@@ -63,13 +63,13 @@ public class CartController
     public String addItemToCart(@RequestParam("bookId")int bookId, @RequestParam("quantity") int quantity, @RequestParam(name = "goodMessages",required = false) List<String> goodMessages, @RequestParam(name = "badMessages",required = false) List<String> badMessages, Model model)
     {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        Ksiazka book = bookService.getBookById(bookId);
+        Book book = bookService.getBookById(bookId);
         if(quantity > 0)
         {
             List<Cart> cartList = cartService.getCart(username);
             for (Cart item: cartList)
             {
-                if(item.getKsiazki_id().getId() == bookId)
+                if(item.getBookId().getId() == bookId)
                 {
                     int old = item.getQuantity();
                     item.setQuantity(old + quantity);
@@ -115,7 +115,7 @@ public class CartController
         List<Cart> cartItemsList = cartService.getCart(username);
         for(Cart item:cartItemsList)
         {
-            if(item.getKsiazki_id().getId() == bookId)
+            if(item.getBookId().getId() == bookId)
             {
                 item.setQuantity(quantity);
                 cartService.saveCart(item);

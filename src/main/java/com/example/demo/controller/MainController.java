@@ -28,7 +28,7 @@ public class MainController
     public String main(Model model, @RequestParam(name = "goodMessages",required = false) List<String> goodMessages, @RequestParam(name = "badMessages",required = false) List<String> badMessages)
     {
 
-        List<Ksiazka> books = bookService.getBooks();
+        List<Book> books = bookService.getBooks();
         model.addAttribute("books",books);
         model.addAttribute("goodMessages",goodMessages);
         model.addAttribute("badMessages",badMessages);
@@ -39,7 +39,7 @@ public class MainController
     public String editList(Model model, @RequestParam(name = "goodMessages",required = false) List<String> goodMessages, @RequestParam(name = "badMessages",required = false) List<String> badMessages)
     {
 
-        List<Ksiazka> books = bookService.getBooks();
+        List<Book> books = bookService.getBooks();
         model.addAttribute("books",books);
         model.addAttribute("goodMessages",goodMessages);
         model.addAttribute("badMessages",badMessages);
@@ -52,30 +52,30 @@ public class MainController
     public String search(Model model, @RequestParam(name = "searchParam",required = false) String searchParam,@RequestParam(name = "goodMessages",required = false) List<String> goodMessages, @RequestParam(name = "badMessages",required = false) List<String> badMessages )
     {
         String search = searchParam.toLowerCase(Locale.ROOT);
-        Set<Ksiazka> books = new HashSet<>();
-        List<Ksiazka> booksList = bookService.getBooks();
-        for(Ksiazka book : booksList)
+        Set<Book> books = new HashSet<>();
+        List<Book> booksList = bookService.getBooks();
+        for(Book book : booksList)
         {
 
-            if(book.getNazwa().toLowerCase(Locale.ROOT).contains(search))
+            if(book.getTitle().toLowerCase(Locale.ROOT).contains(search))
             {
                 books.add(book);
                 continue;
             }
-            if(book.getKategoria().getNazwa().toLowerCase(Locale.ROOT).contains(search))
+            if(book.getCategory().getName().toLowerCase(Locale.ROOT).contains(search))
             {
                 books.add(book);
                 continue;
             }
-            if (book.getWydawnictwo().toLowerCase(Locale.ROOT).contains(search))
+            if (book.getPublisher().toLowerCase(Locale.ROOT).contains(search))
             {
                 books.add(book);
                 continue;
             }
 
-            for(Autor autor:book.getAutorzy())
+            for(Author author :book.getAuthors())
             {
-                String bookAuthor = autor.getImie() + " " + autor.getNazwisko();
+                String bookAuthor = author.getName() + " " + author.getSurname();
                 if(bookAuthor.toLowerCase(Locale.ROOT).contains(search))
                 {
                     books.add(book);

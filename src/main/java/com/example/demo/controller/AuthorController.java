@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.Autor;
+import com.example.demo.entity.Author;
 import com.example.demo.services.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +21,7 @@ public class AuthorController
     @GetMapping("/list")
     public String listAuthors(Model model,@RequestParam(name = "goodMessages",required = false) List<String> goodMessages, @RequestParam(name = "badMessages",required = false) List<String> badMessages)
     {
-        List<Autor> authors = authorService.getAuthors();
+        List<Author> authors = authorService.getAuthors();
         model.addAttribute("authors", authors);
         model.addAttribute("goodMessages",goodMessages);
         model.addAttribute("badMessages",badMessages);
@@ -31,7 +31,7 @@ public class AuthorController
     @GetMapping("/formadd")
     public String addForm(Model model)
     {
-        Autor author = new Autor();
+        Author author = new Author();
         model.addAttribute("author",author);
         return "addauthorform";
     }
@@ -39,7 +39,7 @@ public class AuthorController
     @GetMapping("/formedit")
     public String formedit(Model model, @RequestParam("authorId") int authorId, @RequestParam(name = "goodMessages",required = false) List<String> goodMessages, @RequestParam(name = "badMessages",required = false) List<String> badMessages)
     {
-        Autor author = authorService.getAuthor(authorId);
+        Author author = authorService.getAuthor(authorId);
 
         if(author == null)
         {
@@ -60,9 +60,9 @@ public class AuthorController
     }
 
     @PostMapping("/updateAuthor")
-    public String updateAuthor(@ModelAttribute("author")Autor autor, @RequestParam("authorId") int authorId, Model model, @RequestParam(name = "goodMessages",required = false) List<String> goodMessages, @RequestParam(name = "badMessages",required = false) List<String> badMessages)
+    public String updateAuthor(@ModelAttribute("author") Author author, @RequestParam("authorId") int authorId, Model model, @RequestParam(name = "goodMessages",required = false) List<String> goodMessages, @RequestParam(name = "badMessages",required = false) List<String> badMessages)
     {
-        Autor old = authorService.getAuthor(authorId);
+        Author old = authorService.getAuthor(authorId);
 
         if(old == null)
         {
@@ -77,8 +77,8 @@ public class AuthorController
             return "redirect:/authors/list";
         }
 
-        old.setImie(autor.getImie());
-        old.setNazwisko(autor.getNazwisko());
+        old.setName(author.getName());
+        old.setSurname(author.getSurname());
         authorService.saveAuthor(old);
 
         if(goodMessages == null)
@@ -93,10 +93,10 @@ public class AuthorController
     }
 
     @PostMapping("/saveAuthor")
-    public String saveAuthor(Model model,@ModelAttribute("author")Autor autor, @RequestParam(name = "goodMessages",required = false) List<String> goodMessages, @RequestParam(name = "badMessages",required = false) List<String> badMessages)
+    public String saveAuthor(Model model, @ModelAttribute("author") Author author, @RequestParam(name = "goodMessages",required = false) List<String> goodMessages, @RequestParam(name = "badMessages",required = false) List<String> badMessages)
     {
 
-        authorService.saveAuthor(autor);
+        authorService.saveAuthor(author);
         if(goodMessages == null)
         {
             goodMessages = new ArrayList<>();
@@ -111,8 +111,8 @@ public class AuthorController
     @PostMapping("/deleteAuthor")
     public String deleteAuthor(@RequestParam("authorId")int authorId, @RequestParam(name = "goodMessages",required = false) List<String> goodMessages, @RequestParam(name = "badMessages",required = false) List<String> badMessages, Model model)
     {
-        Autor autor = authorService.getAuthor(authorId);
-        if(autor == null)
+        Author author = authorService.getAuthor(authorId);
+        if(author == null)
         {
             if(badMessages == null)
             {
@@ -126,7 +126,7 @@ public class AuthorController
         }
 
 
-        authorService.deleteAuthor(autor);
+        authorService.deleteAuthor(author);
 
         if(goodMessages == null)
         {

@@ -1,39 +1,39 @@
-DROP TABLE IF EXISTS "kategorie";
-CREATE TABLE "kategorie" (
+DROP TABLE IF EXISTS "categories" CASCADE;
+CREATE TABLE "categories" (
 "id"  SERIAL PRIMARY KEY,
-"nazwa" VARCHAR(40) NOT NULL
+"name" VARCHAR(40) NOT NULL
 );
 
 
-DROP TABLE IF EXISTS "ksiazki";
-CREATE TABLE "ksiazki" (
+DROP TABLE IF EXISTS "books" CASCADE;
+CREATE TABLE "books" (
 "id"  SERIAL PRIMARY KEY,
-"nazwa" VARCHAR(100) NOT NULL,
-"wydawnictwo" VARCHAR(50) NOT NULL,
-"cena" float NOT NULL default 0,
-"opis" VARCHAR(500) NOT NULL,
+"title" VARCHAR(100) NOT NULL,
+"publisher" VARCHAR(50) NOT NULL,
+"price" float NOT NULL default 0,
+"description" VARCHAR(500) NOT NULL,
 "image_url" VARCHAR(255) NOT NULL,
-"kategoria_id" INT NULL references kategorie(id)
+"category_id" INT NULL references categories(id)
 );
 
 
-DROP TABLE IF EXISTS "autorzy";
-CREATE TABLE "autorzy" (
+DROP TABLE IF EXISTS "authors" CASCADE;
+CREATE TABLE "authors" (
 "id"  SERIAL PRIMARY KEY,
-"imie" VARCHAR(30) NOT NULL,
-"nazwisko" VARCHAR(40) NOT NULL
+"name" VARCHAR(30) NOT NULL,
+"surname" VARCHAR(40) NOT NULL
 );
 
 
-DROP TABLE IF EXISTS "autorzy_to_ksiazki";
-CREATE TABLE "autorzy_to_ksiazki" (
-"ksiazka_id"  INT NOT NULL references ksiazki(id),
-"autor_id" INT NOT NULL references autorzy(id),
-primary key("ksiazka_id", "autor_id")
+DROP TABLE IF EXISTS "authors_to_books";
+CREATE TABLE "authors_to_books" (
+"book_id"  INT NOT NULL references books(id),
+"author_id" INT NOT NULL references authors(id),
+primary key("book_id", "author_id")
 );
 
 
-DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS users CASCADE;
 CREATE TABLE users (
  username VARCHAR(25) NOT NULL,
  password VARCHAR(60) NOT NULL,
@@ -54,12 +54,12 @@ CREATE unique index authorieties_idx_1 ON authorities("username", "authority");
 DROP TABLE IF EXISTS carts;
 CREATE TABLE carts(
 user_id VARCHAR(25) NOT NULL references users(username),
-ksiazki_id INT NOT NULL references ksiazki(id),
+books_id INT NOT NULL references books(id),
 quantity INT NOT NULL,
-primary key("user_id", "ksiazki_id")
+primary key("user_id", "books_id")
 );
 
-DROP TABLE IF EXISTS orders;
+DROP TABLE IF EXISTS orders CASCADE;
 CREATE TABLE orders(
 "id"  SERIAL PRIMARY KEY,
 "status" VARCHAR(25) DEFAULT 'Nowe',
@@ -69,7 +69,7 @@ CREATE TABLE orders(
 DROP TABLE IF EXISTS order_items;
 CREATE TABLE order_items(
 "id"  SERIAL PRIMARY KEY,
-"book_id" INT NOT NULL references ksiazki(id),
+"book_id" INT NOT NULL references books(id),
 "quantity" INT NOT NULL,
 "order_id" INT NOT NULL references orders(id)
 );

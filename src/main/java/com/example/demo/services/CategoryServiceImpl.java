@@ -1,7 +1,7 @@
 package com.example.demo.services;
 
 import com.example.demo.dao.CategoryDAO;
-import com.example.demo.entity.Kategoria;
+import com.example.demo.entity.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,29 +16,29 @@ public class CategoryServiceImpl implements CategoryService
 
     @Override
     @Transactional
-    public void saveCategory(Kategoria kategoria)
+    public void saveCategory(Category category)
     {
-        categoryDAO.saveCategory(kategoria);
+        categoryDAO.saveCategory(category);
 
     }
 
     @Override
     @Transactional
-    public List<Kategoria> getCategories()
+    public List<Category> getCategories()
     {
-        List<Kategoria> categories = categoryDAO.getCategories();
+        List<Category> categories = categoryDAO.getCategories();
         return categories;
     }
 
     @Override
     @Transactional
-    public Kategoria getCategory(int categoryId) {
+    public Category getCategory(int categoryId) {
         return categoryDAO.getCategory(categoryId);
     }
 
     @Override
     @Transactional
-    public void deleteCategory(Kategoria category) {
+    public void deleteCategory(Category category) {
         categoryDAO.deleteCategory(category);
     }
 }

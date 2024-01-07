@@ -93,9 +93,12 @@ http://www.springframework.org/schema/security/spring-security-4.2.xsd"
     <bean id="myDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
           destroy-method="close">
         <property name="driverClass" value="org.postgresql.Driver" />
-        <property name="jdbcUrl" value="jdbc:postgresql://tai.db.elephantsql.com:5432/clyzycow" />
-        <property name="user" value="clyzycow" />
-        <property name="password" value="m5PMNwPJsoF7XcpCeVvRAIm1YtHPT_1r" />
+<!--        <property name="jdbcUrl" value="jdbc:postgresql://tai.db.elephantsql.com:5432/clyzycow" />-->
+<!--        <property name="user" value="clyzycow" />-->
+<!--        <property name="password" value="m5PMNwPJsoF7XcpCeVvRAIm1YtHPT_1r" />-->
+        <property name="jdbcUrl" value="jdbc:postgresql://tyke.db.elephantsql.com/ftvsdtmq" />
+        <property name="user" value="ftvsdtmq" />
+        <property name="password" value="0pwWGhdjdZ_REv1Y2ZFUrD6dxUFikWPZ" />
         <!-- these are connection pool properties for C3P0 -->
         <property name="minPoolSize" value="1" />
         <property name="maxPoolSize" value="2" />

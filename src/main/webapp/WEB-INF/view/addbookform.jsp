@@ -16,22 +16,22 @@
         <div class="fs-1 pt-5 text-center">Dodaj nową książkę</div>
         <div class="mb-3 mt-5">
             <label>Tytuł:</label>
-            <form:input path="nazwa" class="form-control"/>
+            <form:input path="title" class="form-control"/>
         </div>
         <div class="mb-3">
             <label>Wydawnictwo:</label>
-            <form:input path="wydawnictwo" class="form-control"/>
+            <form:input path="publisher" class="form-control"/>
         </div>
         <div class="mb-3">
             <label>cena:</label>
-            <form:input path="cena" class="form-control"/>
+            <form:input path="price" class="form-control"/>
         </div>
         <div class="mb-3">
             <label>Kategoria:</label>
-            <form:select path="kategoria.id" class="form-control">
+            <form:select path="category.id" class="form-control">
 
                 <c:forEach var="category" items="${categories}">
-                    <form:option value="${category.id}" label="${category.nazwa}"/>
+                    <form:option value="${category.id}" label="${category.name}"/>
                 </c:forEach>
             </form:select>
         </div>
@@ -40,7 +40,7 @@
             <label>Autorzy: </label>
             <select class="form-control" name="authors_id" multiple="true">
                 <c:forEach items="${authors}" var="author">
-                        <option value="${author.id}">${author.imie} ${author.nazwisko}</option>
+                        <option value="${author.id}">${author.name} ${author.surname}</option>
                 </c:forEach>
             </select>
         </div>
@@ -50,7 +50,7 @@
         </div>
         <div class="mb-3">
             <label>Opis:</label>
-            <form:textarea path="opis" class="form-control"/>
+            <form:textarea path="description" class="form-control"/>
         </div>
         <button type="submit" class="btn btn-danger my-sm-3 w-50 mt-3">Dodaj</button>
     </form:form>

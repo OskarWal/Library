@@ -19,8 +19,8 @@
             <tbody class="table-dark">
             <c:forEach var="author" items="${authors}">
                 <tr>
-                    <td>${author.imie}</td>
-                    <td>${author.nazwisko}</td>
+                    <td>${author.name}</td>
+                    <td>${author.surname}</td>
 
                     <td>
                         <form:form action="formedit" method="get">

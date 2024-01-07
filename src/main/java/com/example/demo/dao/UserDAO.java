@@ -9,7 +9,7 @@ import java.util.List;
 public interface UserDAO {
     void saveUser(User user);
     User getUser(String username);
-    List<Authority> getAuthoritity(String username);
+    List<Authority> getAuthority(String username);
 
     List<User> getAllUsers();
 }

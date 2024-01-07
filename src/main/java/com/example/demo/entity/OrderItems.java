@@ -14,7 +14,7 @@ public class OrderItems {
     @ManyToOne(cascade =
             {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
     @JoinColumn(name="book_id")
-    private Ksiazka book;
+    private Book book;
 
     @ManyToOne(cascade =
             {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
@@ -27,7 +27,7 @@ public class OrderItems {
     public OrderItems() {
     }
 
-    public OrderItems(Ksiazka book, Order order, int quantity) {
+    public OrderItems(Book book, Order order, int quantity) {
         this.book = book;
         this.order = order;
         this.quantity = quantity;
@@ -41,11 +41,11 @@ public class OrderItems {
         this.id = id;
     }
 
-    public Ksiazka getBook() {
+    public Book getBook() {
         return book;
     }
 
-    public void setBook(Ksiazka book) {
+    public void setBook(Book book) {
         this.book = book;
     }
 

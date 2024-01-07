@@ -18,7 +18,7 @@
             <tbody class="table-dark">
             <c:forEach var="category" items="${categories}">
                 <tr>
-                    <td>${category.nazwa}</td>
+                    <td>${category.name}</td>
                     <td>
                         <form:form action="formedit" method="get">
                             <input type="hidden" id="categoryId" name="categoryId" value="${category.id}"/>

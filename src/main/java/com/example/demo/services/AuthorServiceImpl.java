@@ -1,7 +1,7 @@
 package com.example.demo.services;
 
 import com.example.demo.dao.AuthorDAO;
-import com.example.demo.entity.Autor;
+import com.example.demo.entity.Author;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,28 +16,28 @@ public class AuthorServiceImpl implements AuthorService{
 
     @Override
     @Transactional
-    public void saveAuthor(Autor autor) {
-        authorDAO.saveAuthor(autor);
+    public void saveAuthor(Author author) {
+        authorDAO.saveAuthor(author);
 
     }
 
     @Override
     @Transactional
-    public List<Autor> getAuthors() {
-        List<Autor> authors = authorDAO.getAuthors();
+    public List<Author> getAuthors() {
+        List<Author> authors = authorDAO.getAuthors();
         return authors;
     }
 
     @Override
     @Transactional
-    public Autor getAuthor(int id) {
-        Autor author = authorDAO.getAuthor(id);
+    public Author getAuthor(int id) {
+        Author author = authorDAO.getAuthor(id);
         return author;
     }
 
     @Override
     @Transactional
-    public void deleteAuthor(Autor autor) {
-        authorDAO.deleteAuthor(autor);
+    public void deleteAuthor(Author author) {
+        authorDAO.deleteAuthor(author);
     }
 }

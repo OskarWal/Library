@@ -11,23 +11,23 @@ public class Cart
     private String user_id;
     @Id
     @ManyToOne(optional = false)
-    @JoinColumn(name = "ksiazki_id", nullable = false)
-    private Ksiazka ksiazki_id;
+    @JoinColumn(name = "books_id", nullable = false)
+    private Book books_id;
     @Column(name = "quantity", nullable = false)
     private int quantity;
 
-    public Ksiazka getKsiazki_id() {
-        return ksiazki_id;
+    public Book getBookId() {
+        return books_id;
     }
 
-    public void setKsiazki_id(Ksiazka ksiazki_id) {
-        this.ksiazki_id = ksiazki_id;
-    }
+//    public void setBooks_id(Book books_id) {
+//        this.books_id = books_id;
+//    }
 
-    public Cart(String username, Ksiazka ksiazki_id, int quantity)
+    public Cart(String username, Book books_id, int quantity)
     {
         this.user_id = username;
-        this.ksiazki_id = ksiazki_id;
+        this.books_id = books_id;
         this.quantity = quantity;
     }
 
@@ -43,22 +43,19 @@ public class Cart
         this.user_id = username;
     }
 
-    public Ksiazka getKsiazka_id() {
-        return ksiazki_id;
-    }
+    //public Book getBookId() {
+    //    return books_id;
+    //}
 
     @Override
     public String toString() {
         return "Cart{" +
                 "username='" + user_id + '\'' +
-                ", ksiazka_id=" + ksiazki_id +
+                ", ksiazka_id=" + books_id +
                 ", quantity=" + quantity +
                 '}';
     }
 
-    public void setKsiazka_id(Ksiazka ksiazka_id) {
-        this.ksiazki_id = ksiazka_id;
-    }
 
     public int getQuantity() {
         return quantity;

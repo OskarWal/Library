@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 
 @Controller
@@ -31,9 +30,9 @@ public class BookController {
     @GetMapping("/formadd")
     public String addForm(Model model)
     {
-        Ksiazka book = new Ksiazka();
-        List<Kategoria> categories = categoryService.getCategories();
-        List<Autor> authors = authorService.getAuthors();
+        Book book = new Book();
+        List<Category> categories = categoryService.getCategories();
+        List<Author> authors = authorService.getAuthors();
         model.addAttribute("book",book);
         model.addAttribute("categories", categories);
         model.addAttribute("authors", authors);
@@ -43,7 +42,7 @@ public class BookController {
     @GetMapping("/edit")
     public String editBook(Model model, @RequestParam("bookId") int bookId, @RequestParam(name = "goodMessages",required = false) List<String> goodMessages, @RequestParam(name = "badMessages",required = false) List<String> badMessages)
     {
-        Ksiazka book = bookService.getBookById(bookId);
+        Book book = bookService.getBookById(bookId);
 
         if(book == null)
         {
@@ -56,10 +55,10 @@ public class BookController {
         }
 
 
-        List<Kategoria> categories = categoryService.getCategories();
-        List<Autor> authors = authorService.getAuthors();
+        List<Category> categories = categoryService.getCategories();
+        List<Author> authors = authorService.getAuthors();
         List<Integer> book_authors = new ArrayList<>();
-        for(Autor b: book.getAutorzy())
+        for(Author b: book.getAuthors())
         {
             book_authors.add(b.getId());
         }
@@ -74,7 +73,7 @@ public class BookController {
     @PostMapping("/delete")
     public String deleteBook(Model model, @RequestParam("bookId") int bookId,@RequestParam(name = "goodMessages",required = false) List<String> goodMessages, @RequestParam(name = "badMessages",required = false) List<String> badMessages)
     {
-        Ksiazka book = bookService.getBookById(bookId);
+        Book book = bookService.getBookById(bookId);
 
         if(book == null)
         {
@@ -99,18 +98,18 @@ public class BookController {
     }
 
     @PostMapping("/saveBook")
-    public String saveBook(Model model,@ModelAttribute("book") Ksiazka ksiazka, @RequestParam("authors_id") List<Integer> id, @RequestParam(name = "goodMessages",required = false) List<String> goodMessages, @RequestParam(name = "badMessages",required = false) List<String> badMessages)
+    public String saveBook(Model model, @ModelAttribute("book") Book book, @RequestParam("authors_id") List<Integer> id, @RequestParam(name = "goodMessages",required = false) List<String> goodMessages, @RequestParam(name = "badMessages",required = false) List<String> badMessages)
     {
 
-        bookService.saveBook(ksiazka);
+        bookService.saveBook(book);
 
 
         for(int author_id: id)
         {
-            ksiazka.addAutor(authorService.getAuthor(author_id));
+            book.addAuthor(authorService.getAuthor(author_id));
         }
 
-        bookService.saveBook(ksiazka);
+        bookService.saveBook(book);
 
         if(goodMessages == null)
             goodMessages = new ArrayList<>();
@@ -122,10 +121,10 @@ public class BookController {
     }
 
     @PostMapping("/updateBook")
-    public String updateBook(Model model,@ModelAttribute("book") Ksiazka ksiazka,@RequestParam("bookId") int bookId, @RequestParam("authors_id") List<Integer> id, @RequestParam(name = "goodMessages",required = false) List<String> goodMessages, @RequestParam(name = "badMessages",required = false) List<String> badMessages)
+    public String updateBook(Model model, @ModelAttribute("book") Book book, @RequestParam("bookId") int bookId, @RequestParam("authors_id") List<Integer> id, @RequestParam(name = "goodMessages",required = false) List<String> goodMessages, @RequestParam(name = "badMessages",required = false) List<String> badMessages)
     {
 
-        Ksiazka old = bookService.getBookById(bookId);
+        Book old = bookService.getBookById(bookId);
 
         if(old == null)
         {
@@ -137,18 +136,18 @@ public class BookController {
             return "redirect:/editList";
         }
 
-        old.setNazwa(ksiazka.getNazwa());
-        old.setCena(ksiazka.getCena());
-        old.setWydawnictwo(ksiazka.getWydawnictwo());
-        old.setKategoria(ksiazka.getKategoria());
-        old.setImage_url(ksiazka.getImage_url());
-        old.setOpis(ksiazka.getOpis());
-        old.getAutorzy().clear();
+        old.setTitle(book.getTitle());
+        old.setPrice(book.getPrice());
+        old.setPublisher(book.getPublisher());
+        old.setCategory(book.getCategory());
+        old.setImage_url(book.getImage_url());
+        old.setDescription(book.getDescription());
+        old.getAuthors().clear();
 
 
         for(int author_id: id)
         {
-            old.addAutor(authorService.getAuthor(author_id));
+            old.addAuthor(authorService.getAuthor(author_id));
         }
 
         bookService.saveBook(old);
@@ -165,7 +164,7 @@ public class BookController {
     @GetMapping("/details")
     public String booksDetails(Model model, @RequestParam("bookId") int bookId)
     {
-        Ksiazka book = bookService.getBookById(bookId);
+        Book book = bookService.getBookById(bookId);
 
         if(book == null)
         {

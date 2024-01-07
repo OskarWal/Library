@@ -1,6 +1,6 @@
 package com.example.demo.dao;
 
-import com.example.demo.entity.Autor;
+import com.example.demo.entity.Author;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -16,36 +16,36 @@ public class AuthorDAOImpl implements AuthorDAO {
 
 
     @Override
-    public List<Autor> getAuthors()
+    public List<Author> getAuthors()
     {
         Session currentSession = sessionFactory.getCurrentSession();
 
-        Query<Autor> query = currentSession.createQuery("from Autor", Autor.class);
+        Query<Author> query = currentSession.createQuery("from Author", Author.class);
         System.out.println(query.getResultList());
-        List<Autor> authors = query.getResultList();
+        List<Author> authors = query.getResultList();
         return authors ;
     }
 
     @Override
-    public void saveAuthor(Autor autor)
+    public void saveAuthor(Author author)
     {
         Session session = sessionFactory.getCurrentSession();
 
-        session.saveOrUpdate(autor);
+        session.saveOrUpdate(author);
     }
 
     @Override
-    public Autor getAuthor(int id)
+    public Author getAuthor(int id)
     {
         Session currentSession = sessionFactory.getCurrentSession();
 
-        Autor author =  (Autor) currentSession.get(Autor.class, id);
+        Author author =  (Author) currentSession.get(Author.class, id);
         return author ;
     }
 
     @Override
-    public void deleteAuthor(Autor autor) {
+    public void deleteAuthor(Author author) {
         Session session = sessionFactory.getCurrentSession();
-        session.delete(autor);
+        session.delete(author);
     }
 }

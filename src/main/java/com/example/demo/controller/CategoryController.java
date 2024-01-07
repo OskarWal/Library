@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.Kategoria;
+import com.example.demo.entity.Category;
 import com.example.demo.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +19,7 @@ public class CategoryController {
     @GetMapping("/list")
     public String listCategory(Model model,@RequestParam(name = "goodMessages",required = false) List<String> goodMessages, @RequestParam(name = "badMessages",required = false) List<String> badMessages)
     {
-        List<Kategoria> categories = categoryService.getCategories();
+        List<Category> categories = categoryService.getCategories();
         model.addAttribute("categories",categories);
         model.addAttribute("goodMessages",goodMessages);
         model.addAttribute("badMessages",badMessages);
@@ -29,7 +29,7 @@ public class CategoryController {
     @GetMapping("/formadd")
     public String addForm(Model model)
     {
-        Kategoria category = new Kategoria();
+        Category category = new Category();
         model.addAttribute("category",category);
         return "AddCategoryForm";
     }
@@ -37,7 +37,7 @@ public class CategoryController {
     @GetMapping("/formedit")
     public String formedit(Model model, @RequestParam("categoryId") int categoryId, @RequestParam(name = "goodMessages",required = false) List<String> goodMessages, @RequestParam(name = "badMessages",required = false) List<String> badMessages)
     {
-        Kategoria category = categoryService.getCategory(categoryId);
+        Category category = categoryService.getCategory(categoryId);
 
         if(category == null)
         {
@@ -55,9 +55,9 @@ public class CategoryController {
     }
 
     @PostMapping("/updateCategory")
-    public String updateCategory(@ModelAttribute("category")Kategoria category, @RequestParam("categoryId") int categoryId, Model model, @RequestParam(name = "goodMessages",required = false) List<String> goodMessages, @RequestParam(name = "badMessages",required = false) List<String> badMessages)
+    public String updateCategory(@ModelAttribute("category") Category category, @RequestParam("categoryId") int categoryId, Model model, @RequestParam(name = "goodMessages",required = false) List<String> goodMessages, @RequestParam(name = "badMessages",required = false) List<String> badMessages)
     {
-        Kategoria old = categoryService.getCategory(categoryId);
+        Category old = categoryService.getCategory(categoryId);
         if(old == null)
         {
             if(badMessages == null)
@@ -69,7 +69,7 @@ public class CategoryController {
         }
 
 
-        old.setNazwa(category.getNazwa());
+        old.setName(category.getName());
         categoryService.saveCategory(old);
 
         if(goodMessages == null)
@@ -82,9 +82,9 @@ public class CategoryController {
     }
 
     @PostMapping("/saveCategory")
-    public String saveCategory(@ModelAttribute("category") Kategoria kategoria, @RequestParam(name = "goodMessages",required = false) List<String> goodMessages, @RequestParam(name = "badMessages",required = false) List<String> badMessages, Model model)
+    public String saveCategory(@ModelAttribute("category") Category category, @RequestParam(name = "goodMessages",required = false) List<String> goodMessages, @RequestParam(name = "badMessages",required = false) List<String> badMessages, Model model)
     {
-        categoryService.saveCategory(kategoria);
+        categoryService.saveCategory(category);
 
         if(goodMessages == null)
             goodMessages = new ArrayList<>();
@@ -98,7 +98,7 @@ public class CategoryController {
     @PostMapping("/deleteCategory")
     public String deleteCategory(@RequestParam("categoryId")int categoryId, @RequestParam(name = "goodMessages",required = false) List<String> goodMessages, @RequestParam(name = "badMessages",required = false) List<String> badMessages, Model model)
     {
-        Kategoria category = categoryService.getCategory(categoryId);
+        Category category = categoryService.getCategory(categoryId);
 
         if(category == null)
         {

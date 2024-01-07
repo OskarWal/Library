@@ -1,7 +1,7 @@
 package com.example.demo.dao;
 
 
-import com.example.demo.entity.Ksiazka;
+import com.example.demo.entity.Book;
 
 
 import org.hibernate.Session;
@@ -18,32 +18,32 @@ public class BookDAOImpl implements BookDAO {
     @Autowired
     private SessionFactory sessionFactory;
     @Override
-    public List<Ksiazka> getBooks() {
+    public List<Book> getBooks() {
         Session currentSession = sessionFactory.getCurrentSession();
-        Query<Ksiazka> query = currentSession.createQuery("from Ksiazka ksiazka order by ksiazka.id desc", Ksiazka.class);
-        List<Ksiazka> books = query.getResultList();
+        Query<Book> query = currentSession.createQuery("from Book book order by book.id desc", Book.class);
+        List<Book> books = query.getResultList();
 
 
         return books ;
     }
     @Override
-    public void saveBook(Ksiazka ksiazka) {
+    public void saveBook(Book book) {
         Session session = sessionFactory.getCurrentSession();
 
-        session.saveOrUpdate(ksiazka);
+        session.saveOrUpdate(book);
     }
 
     @Override
-    public Ksiazka getBookById(int id) {
+    public Book getBookById(int id) {
         Session currentSession = sessionFactory.getCurrentSession();
 
-        Ksiazka book =  (Ksiazka) currentSession.get(Ksiazka.class, id);
+        Book book =  (Book) currentSession.get(Book.class, id);
 
         return book ;
     }
 
     @Override
-    public void deleteBook(Ksiazka book) {
+    public void deleteBook(Book book) {
         Session currentSession = sessionFactory.getCurrentSession();
 
         currentSession.delete(book);

@@ -1,6 +1,6 @@
 package com.example.demo.dao;
 
-import com.example.demo.entity.Kategoria;
+import com.example.demo.entity.Category;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -14,32 +14,32 @@ public class CategoryDAOImpl implements CategoryDAO{
     private SessionFactory sessionFactory;
 
     @Override
-    public List<Kategoria> getCategories() {
+    public List<Category> getCategories() {
         Session currentSession = sessionFactory.getCurrentSession();
-        Query<Kategoria> query = currentSession.createQuery("from Kategoria", Kategoria.class);
-        List<Kategoria> categories = query.getResultList();
+        Query<Category> query = currentSession.createQuery("from Category", Category.class);
+        List<Category> categories = query.getResultList();
         return categories ;
     }
 
 
     @Override
-    public void saveCategory(Kategoria kategoria) {
+    public void saveCategory(Category category) {
         Session session = sessionFactory.getCurrentSession();
 
-        session.saveOrUpdate(kategoria);
+        session.saveOrUpdate(category);
     }
 
     @Override
-    public Kategoria getCategory(int categoryId) {
+    public Category getCategory(int categoryId) {
         Session session = sessionFactory.getCurrentSession();
 
-        Kategoria category = session.get(Kategoria.class,categoryId);
+        Category category = session.get(Category.class,categoryId);
 
         return category;
     }
 
     @Override
-    public void deleteCategory(Kategoria category) {
+    public void deleteCategory(Category category) {
         Session session = sessionFactory.getCurrentSession();
         session.delete(category);
     }

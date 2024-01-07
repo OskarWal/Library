@@ -22,22 +22,22 @@
                 <tbody  class="table-dark">
                 <c:forEach var="item" items="${cart_items}">
                     <tr>
-                        <td>${item.ksiazki_id.nazwa}</td>
-                        <td><fmt:formatNumber value = "${item.ksiazki_id.cena}" type = "currency" currencySymbol="zł"/></td>
-                        <td>${item.ksiazki_id.kategoria.nazwa}</td>
-                        <td><c:forEach var="autor" items="${item.ksiazki_id.autorzy}">
-                            ${autor.imie} ${autor.nazwisko},
+                        <td>${item.bookId.title}</td>
+                        <td><fmt:formatNumber value = "${item.bookId.price}" type = "currency" currencySymbol="zł"/></td>
+                        <td>${item.bookId.category.name}</td>
+                        <td><c:forEach var="author" items="${item.bookId.authors}">
+                            ${author.name} ${author.surname},
                         </c:forEach>
                         </td>
                         <td><form:form action="editCartItem" method="post">
-                            <input type="hidden" id="bookId" name="bookId" value="${item.ksiazki_id.id}"/>
+                            <input type="hidden" id="bookId" name="bookId" value="${item.bookId.id}"/>
                             <input type="number" value="${item.quantity}" name="quantity" id="quantity" onchange="this.form.submit()" min="1" max="1000"/>
                         </form:form></td>
 
-                        <td><fmt:formatNumber value = "${item.ksiazki_id.cena * item.quantity}" type = "currency" currencySymbol="zł"/></td>
+                        <td><fmt:formatNumber value = "${item.bookId.price * item.quantity}" type = "currency" currencySymbol="zł"/></td>
 
                         <td><form:form action="deleteCartItem" method="post">
-                            <input type="hidden" id="bookId" name="bookId" value="${item.ksiazki_id.id}"/>
+                            <input type="hidden" id="bookId" name="bookId" value="${item.bookId.id}"/>
                             <button class="btn btn-outline-danger btn-sm" type="submit">Usuń</button>
                         </form:form></td>
                     </tr>

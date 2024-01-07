@@ -10,9 +10,9 @@
         <div class="card bg-secondary text-white "style=" transform: scale(0.8);width: 18rem" >
             <img src="${book.image_url}" class="card-img-top" alt="image">
             <div class="card-body">
-                <h5 class="card-title">${book.nazwa}</h5>
-                <p class="card-text">Kategoria: ${book.kategoria.nazwa}</p>
-                <p class="card-text">Cena: <fmt:formatNumber value = "${book.cena}" type = "currency" currencySymbol="zł"/></p>
+                <h5 class="card-title">${book.title}</h5>
+                <p class="card-text">Kategoria: ${book.category.name}</p>
+                <p class="card-text">Cena: <fmt:formatNumber value = "${book.price}" type = "currency" currencySymbol="zł"/></p>
                 <a class="mb-2 d-flex justify-content-between">
                 <form:form action="${pageContext.request.contextPath}/books/details" method="get">
                     <input type="hidden" id="bookId" name="bookId" value="${book.id}"/>
@@ -29,7 +29,7 @@
                 </a>
                 <div class="card-footer">
                     Wydawnictwo:
-                    <p class="card-text">${book.wydawnictwo}</p>
+                    <p class="card-text">${book.publisher}</p>
                 </div>
             </div>
         </div>

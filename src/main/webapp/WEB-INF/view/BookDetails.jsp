@@ -14,10 +14,10 @@
                         <div class="white-box text-center"><img src="${book.image_url}" width="430" height="600" class="img-responsive h-50"></div>
                     </div>
                     <div class="col m-auto">
-                        <h1 class="card-title text-center">${book.nazwa}</h1>
+                        <h1 class="card-title text-center">${book.title}</h1>
                         <h4 class="box-title mt-5 m-auto">Opis:</h4>
-                        <p>${book.opis}</p>
-                        <h4 class="mt-5">Cena: <fmt:formatNumber value = "${book.cena}" type = "currency" currencySymbol="zł"/></h4>
+                        <p>${book.description}</p>
+                        <h4 class="mt-5">Cena: <fmt:formatNumber value = "${book.price}" type = "currency" currencySymbol="zł"/></h4>
                         <label for="quantity">Ilość: </label>
                         <sec:authorize access="isAuthenticated()">
                             <form:form action="${pageContext.request.contextPath}/addItemToCart" method="post">
@@ -39,17 +39,17 @@
                                 <tbody>
                                 <tr>
                                     <td width="390">Kategoria</td>
-                                    <td>${book.kategoria.nazwa}</td>
+                                    <td>${book.category.name}</td>
                                 </tr>
                                 <tr>
                                     <td>Wydawnictwo</td>
-                                    <td>${book.wydawnictwo}</td>
+                                    <td>${book.publisher}</td>
                                 </tr>
                                 <tr>
                                     <td>Autorzy</td>
                                     <td>
-                                        <c:forEach var="autor" items="${book.autorzy}">
-                                            ${autor.imie} ${autor.nazwisko},
+                                        <c:forEach var="author" items="${book.authors}">
+                                            ${author.name} ${author.surname},
                                         </c:forEach>
                                     </td>
                                 </tr>

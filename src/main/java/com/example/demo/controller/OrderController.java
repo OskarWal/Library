@@ -59,7 +59,7 @@ public class OrderController
 
         for(Cart item:cartList)
         {
-            orderItemsService.saveOrderItems(new OrderItems(item.getKsiazki_id(),order,item.getQuantity()));
+            orderItemsService.saveOrderItems(new OrderItems(item.getBookId(),order,item.getQuantity()));
             cartService.deleteCartItem(item);
         }
         if(goodMessages == null)

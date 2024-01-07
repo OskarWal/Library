@@ -1,7 +1,7 @@
 package com.example.demo.services;
 
 import com.example.demo.dao.BookDAO;
-import com.example.demo.entity.Ksiazka;
+import com.example.demo.entity.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,29 +15,29 @@ public class BookServiceImpl implements BookService {
 
     @Override
     @Transactional
-    public List<Ksiazka> getBooks() {
-        List<Ksiazka> books = bookDAO.getBooks();
+    public List<Book> getBooks() {
+        List<Book> books = bookDAO.getBooks();
         return books;
     }
 
     @Override
     @Transactional
-    public void saveBook(Ksiazka ksiazka) {
-        bookDAO.saveBook(ksiazka);
+    public void saveBook(Book book) {
+        bookDAO.saveBook(book);
     }
 
     @Override
     @Transactional
-    public Ksiazka getBookById(int id)
+    public Book getBookById(int id)
     {
-        Ksiazka book = bookDAO.getBookById(id);
+        Book book = bookDAO.getBookById(id);
 
         return book;
     }
 
     @Override
     @Transactional
-    public void deleteBook(Ksiazka book) {
+    public void deleteBook(Book book) {
         bookDAO.deleteBook(book);
     }
 }

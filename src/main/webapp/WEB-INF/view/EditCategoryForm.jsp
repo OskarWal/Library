@@ -17,7 +17,7 @@
             <div class="fs-1 pt-5 text-center">Edytuj Kategorie</div>
             <div class="mb-3 mt-5">
                 <label>Nazwa kategorii:</label>
-                <form:input path="nazwa" class="form-control"/>
+                <form:input path="name" class="form-control"/>
             </div>
             <div class="mb-5 ">
                 <button type="submit" class="btn btn-danger w-50 ">Edytuj</button>

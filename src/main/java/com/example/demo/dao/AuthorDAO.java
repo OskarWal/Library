@@ -1,15 +1,15 @@
 package com.example.demo.dao;
 
 
-import com.example.demo.entity.Autor;
+import com.example.demo.entity.Author;
 
 import java.util.List;
 
 public interface AuthorDAO {
-    public List<Autor> getAuthors();
-    public void saveAuthor(Autor autor);
+    public List<Author> getAuthors();
+    public void saveAuthor(Author author);
 
-    Autor getAuthor(int id);
+    Author getAuthor(int id);
 
-    void deleteAuthor(Autor autor);
+    void deleteAuthor(Author author);
 }

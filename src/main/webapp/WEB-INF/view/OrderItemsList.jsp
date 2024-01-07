@@ -18,10 +18,10 @@
             <tbody  class="table-dark">
             <c:forEach var="item" items="${items}">
                 <tr>
-                    <td><a class="text-danger" href="${pageContext.request.contextPath}/books/details?bookId=${item.book.id}">${item.book.nazwa}</a></td>
-                    <td><fmt:formatNumber value = "${item.book.cena}" type = "currency" currencySymbol="zł"/></td>
+                    <td><a class="text-danger" href="${pageContext.request.contextPath}/books/details?bookId=${item.book.id}">${item.book.title}</a></td>
+                    <td><fmt:formatNumber value = "${item.book.price}" type = "currency" currencySymbol="zł"/></td>
                     <td>${item.quantity}</td>
-                    <td><fmt:formatNumber value = "${item.book.cena * item.quantity}" type = "currency" currencySymbol="zł"/></td>
+                    <td><fmt:formatNumber value = "${item.book.price * item.quantity}" type = "currency" currencySymbol="zł"/></td>
                 </tr>
             </c:forEach>
             </tbody>

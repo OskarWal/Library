@@ -17,11 +17,11 @@
             <div class="fs-1 pt-5 text-center">Dodaj nowego autora</div>
             <div class="mb-3 mt-5">
                 <label>Imię:</label>
-                <form:input path="imie" class="form-control"/>
+                <form:input path="name" class="form-control"/>
             </div>
             <div class="mb-3">
                 <label>Nazwisko:</label>
-                <form:input path="nazwisko" class="form-control"/>
+                <form:input path="surname" class="form-control"/>
             </div>
             <div class="mb-5 ">
                 <a class="btn btn-danger w-25 float-start" href="${pageContext.request.contextPath}/authors/list "> Powrót </a>

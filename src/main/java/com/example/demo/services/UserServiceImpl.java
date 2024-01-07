@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService{
     @Override
     @Transactional
     public List<Authority> getAuthoritity(String username) {
-        return userDAO.getAuthoritity(username);
+        return userDAO.getAuthority(username);
     }
 
     @Override
